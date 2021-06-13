@@ -1,0 +1,19 @@
+version: '2'
+volumes:
+  homebridge:
+services:
+  homebridge:
+    image: oznu/homebridge:latest
+    container_name: homebridge
+    restart: always
+    network_mode: host
+    environment:
+      - TZ=America/Los_Angeles
+      - PGID=1000
+      - PUID=1000
+      - HOMEBRIDGE_CONFIG_UI=1
+      - HOMEBRIDGE_CONFIG_UI_PORT=8581
+    devices:
+      - /dev/ttyAMA0:/dev/ttyAMA0
+    volumes:
+      - 'homebridge:/homebridge'
